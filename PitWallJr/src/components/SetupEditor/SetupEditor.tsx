@@ -26,6 +26,7 @@ export default function SetupEditor() {
   const setup = useActiveSetup();
   const { updateSetup, validationErrors } = useSetupStore();
   const { stm32ProjectPath } = useSettingsStore();
+  const configHPath = stm32ProjectPath ? `${stm32ProjectPath}/Core/Inc/config.h` : '';
   const { start: buildStart, status: buildStatus, openPanel } = useBuildStore();
   const [activeTab, setActiveTab] = useState<Tab>('can');
   const [status, setStatus] = useState('');
@@ -81,6 +82,12 @@ export default function SetupEditor() {
       return;
     }
     buildStart();
+    try {
+      await invoke('write_config_h', { content: generateConfigH(activeSetup), destPath: configHPath });
+    } catch (e) {
+      setStatus(`Erro ao escrever config.h: ${e}`);
+      return;
+    }
     try {
       await invoke('build_and_flash', { projectPath: stm32ProjectPath });
     } catch (e) {

@@ -1,0 +1,22 @@
+# ─── Claude Code ────────────────────────────────────────────────────────────────
+CLAUDE.md
+.claude/
+
+# ─── Node / npm (raiz) ───────────────────────────────────────────────────────────
+node_modules/
+package-lock.json
+
+# ─── Tauri / Rust ───────────────────────────────────────────────────────────────
+PitWallJr/src-tauri/target/
+PitWallJr/dist/
+PitWallJr/dist-ssr/
+
+# ─── Sistema operacional ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Editores ────────────────────────────────────────────────────────────────────
+.idea/
+*.suo
+*.sw?
